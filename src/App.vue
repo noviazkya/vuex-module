@@ -1,6 +1,8 @@
+<script setup>
+import Navbar from './components/Navbar.vue';
+</script>
+
 <template>
-  <div id="nav">
-    <router-link to="/"> Home </router-link>
-  </div>
-  <router-view/>
-</template>
+  <Navbar></Navbar>
+  <router-view class="mt-20"/>
+</template> 

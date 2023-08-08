@@ -4,13 +4,13 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Donatur</th>
-                    <th>Jenis Bantuan</th>
-                    <th>Jumlah</th>
+                    <th> donatur </th>
+                    <th> jenis bantuan </th>
+                    <th> jumlah </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(row, index) in listTransaksi" :key="index">
+                <tr v-for="(row, index) in listTransaksi" :key="index" class="text-center">
                     <td>{{ index + 1 }}</td>
                     <td>{{ row.donatur }}</td>
                     <td>{{ row.bantuan }}</td>
@@ -20,13 +20,14 @@
         </table>
     </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 export default {
-    computed: {
+    computed: {  
         ...mapState('transaksi', {
             listTransaksi: state => state.listTransaksi
         })
     }
 }
-</script>
+</script> 
