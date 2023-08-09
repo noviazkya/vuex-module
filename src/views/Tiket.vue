@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto sm:px-4">
-      <h1 class="text-center b"> Booking Tiket Kereta </h1>
+      <h1 class="text-center b"> Booking Train Tickets </h1>
       <table class="table-auto">
         <thead>
           <tr>
@@ -21,6 +21,7 @@
       </table>
     </div>
   </template>
+
   <script>
   import { mapGetters, mapActions } from 'vuex';
   
