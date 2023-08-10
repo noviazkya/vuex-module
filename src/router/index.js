@@ -4,7 +4,10 @@ import Users from "../views/Users.vue";
 import Tiket from "../views/Tiket.vue"
 import Product from "../views/Product.vue";
 import SingleProduct from "../views/SingleProduct.vue";
-import Kategori from "../views/Kategori.vue";
+import Category from "../views/Category.vue";
+import Login from "../views/Login.vue";
+import FilterPageCategory from "../views/FilterPageCategory.vue";
+import store from "../store";
 
 const routes = [
     {
@@ -33,15 +36,34 @@ const routes = [
         component: SingleProduct,
     },
     {
-        path: "/kategori",
-        name: "Kategori",
-        component: Kategori,
+        path: "/category/:category",
+        name: "FilterCategory",
+        component: FilterPageCategory,
+    },
+    {
+        path: "/category",
+        name: "Category",
+        component: Category,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+        meta: { requireGuest: true },
     },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireGuest && store.getters["auth/isAuthenticated"]) {
+        next("/"); // redirect to home 
+    } else {
+        next();
+    }
 });
 
 export default router; 

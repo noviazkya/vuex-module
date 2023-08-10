@@ -1,44 +1,54 @@
 <template>
-    <div class="bg-white">
-        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 text-center"></h2>
-            <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 pt-2">
-                <div v-for="product in getProducts" :key="product.id">
-                    <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }" class="group">
-                        <div
-                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                            <img :src="product.image"
-                                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                                class="h-full w-full object-cover object-center group-hover:opacity-75">
-                        </div>
-                        <h3 class="mt-4 text-sm text-gray-700">{{ product.title }}</h3>
-                        <p class="mt-1 text-lg font-medium text-gray-900">${{ product.price }}</p>
-                    </router-link>
-                </div>
-            </div>
-        </div>
+
+    <div class="grid grid-cols-4 gap-4 py-12">
+      
+      <!-- card produk -->
+  
+        <div v-for="product in getProducts" :key="product.id" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }" class="group">
+      
+          <img class="p-8 rounded-t-lg object-contain w-60 h-80 ml-10" :src="product.image" alt="product image" />
+      
+      <div class="px-5 pb-5">
+      
+              <h5 v-if="(product.title).length < 24" class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ product.title }}</h5>
+              <h5 v-else class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ (product.title).substring(0,21)+ " ..." }}</h5>
+    
+          <div class="flex items-center mt-2.5 mb-5">
+              <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+              <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{{ product.rating.rate }} </span><span class="text-1xl font-semibold">| Count {{ product.rating.count }}</span>
+          </div>
+          <div class="flex items-center justify-between">
+              <span class="text-3xl font-bold text-gray-900 dark:text-white">$ {{ product.price }}</span>
+              <a href="#" class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Add to cart</a>
+          </div>
+      </div>
+    </router-link>
+  </div>
+      <!-- card product -->
     </div>
-</template>
-
-<script>
-import { mapGetters, mapActions } from 'vuex';
-
-export default {
-    computed: {
-        ...mapGetters('product', ['getProducts']),
-    },
-    methods: {
-        ...mapActions('product', ['fetchProducts']),
-        // getImage(imageURL) {
-        //     return {
-        //         'src': `${imageURL}`,
-        //         'background-size': 'cover',
-        //         'background-position': 'center',
-        //     };
-        // },
-    },
-    created() {
-        this.fetchProducts();
-    },
-}
-</script>
+  </template>
+  <script>
+  import { mapGetters, mapActions } from 'vuex';
+  
+  export default {
+      computed: {
+          ...mapGetters('product', ['getProducts']),
+      },
+      methods: {
+          ...mapActions('product', ['fetchProducts']),
+          // getImage(imageURL) {
+          //     return {
+          //         'src': `${imageURL}`,
+          //         'background-size': 'cover',
+          //         'background-position': 'center',
+          //     };
+          // },
+      },
+      created() {
+          this.fetchProducts();
+      },
+  }
+  </script>
