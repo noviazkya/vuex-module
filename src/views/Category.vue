@@ -11,7 +11,7 @@
               <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">{{ category }}</h5>
           </a>
       </div>
-  </router-link>
+  </router-link> 
   </div>
     </div>
   </template>

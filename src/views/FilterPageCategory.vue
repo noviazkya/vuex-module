@@ -39,7 +39,7 @@ export default {
      },
   },
   methods: {
-      ...mapActions("product", ["fetchFilterProduct"]),
+      ...mapActions("product", ["fetch FilterProduct"]),
   },
  created() {
     this.fetchFilterProduct();

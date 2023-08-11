@@ -44,7 +44,7 @@ const product = {
         );
         commit("SET_SINGLE_PRODUCT", response.data);
       } catch (error) {
-        alert(error);
+        alert(error); 
         console.log(error);
       }
     },
